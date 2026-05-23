@@ -63,6 +63,7 @@ Este é o core de reconciliation do projeto — mostra padrões avançados de SQ
 - GL amounts devem ser somados por department + period (filtrando contas 2010, 2020)
 - Usar `coalesce()` no FULL JOIN para evitar nulls na chave
 - Ver `docs/financial_logic.md` para entender lógica de contas
+```
 
 ### Critério de Aceitação
 ```bash
@@ -79,7 +80,6 @@ Resultado esperado:
 - Materializado como `table` (não view) — usado para BI
 - Use macros `safe_divide()` se precisar calcular ratios
 - Não colocar lógica de variância aqui — fica em `mart_variance_monthly`
-```
 
 ---
 
@@ -113,6 +113,7 @@ com padrões financeiros realistas. Será usado para toda a pipeline de testes.
 - Função deve retornar `pl.DataFrame`
 - Dados serão salvos como CSV em `data/raw/accounts_payable.csv`
 - Será chamado por `scripts/init_duckdb.py`
+```
 
 ### Critério de Aceitação
 ```bash
@@ -130,7 +131,6 @@ df.filter(pl.col("amount") <= 0).height  # 0 (sem negatives)
 - Mismatched records: não incluir no GL (logic fica em `generate_general_ledger()`)
 - Use `random.seed()` ou `pl.Series.shuffle(seed=)` para reproducibilidade
 - Amounts devem ter variação realista (não distribuição normal — use choices com weights)
-```
 
 ---
 
@@ -160,6 +160,7 @@ Foco em edge cases: totals match, status é válido, não há duplicatas, etc.
 - Modelo alvo: `marts.mart_reconciliation_summary`
 - Schema.yml já existe em `models/marts/reconciliation/schema.yml`
 - Testes custom ficam em `tests/sql/`
+```
 
 ### Critério de Aceitação
 ```bash
@@ -173,7 +174,6 @@ dbt test -s mart_reconciliation_summary --select tag:assert  # Falha esperada
 - Não use `singular` tests (deprecated) — use modelos com `-- config(severity: warn)`
 - Testes devem ser descritivos: `assert_variance_pct_within_tolerance`
 - Se teste falhar, deve ser claro por quê (use comments no SQL)
-```
 
 ---
 
@@ -206,6 +206,7 @@ Deve incluir descrição detalhada, primary_key, todos os testes, e examples.
 ### Contexto
 - Template: `models/marts/reconciliation/schema.yml` (existe)
 - Adicionar section novo para `mart_variance_monthly`
+```
 
 ### Critério de Aceitação
 - Schema.yml valida sem erro (`dbt parse`)
@@ -217,7 +218,6 @@ Deve incluir descrição detalhada, primary_key, todos os testes, e examples.
 - Descrição deve explicar a **intenção**, não apenas o que é
 - Exemplo: Ruim: "Month and year of transaction"
 - Exemplo: Bom: "Fiscal year and month when variance was calculated. Used to join with calendar for reporting."
-```
 
 ---
 
@@ -235,7 +235,6 @@ Test `assert_variance_pct_within_tolerance` está falhando.
 Investigar e sugerir correção.
 
 ### Contexto do Erro
-```
 Failure in tests/sql/assert_variance_pct_within_tolerance.sql:
 Got 153 rows where variance_pct > 0.05 (5%)
 Expected 0 rows.
@@ -257,7 +256,6 @@ dbt test -s test_variance_logic  # Passa
 ### Notas
 - Teste pode estar correto — talvez accuracy expectation precise ajuste
 - Investigar se 5% de variance é aceitável ou não (pergunta: é bug ou feature?)
-```
 
 ---
 
@@ -286,6 +284,7 @@ Criar página Streamlit (`pages/3_anomalies.py`) que mostra variâncias anômala
 - Página entra em `app/pages/3_anomalies.py`
 - Dados: `select * from marts.mart_variance_monthly where variance_pct > 0.05`
 - Usar Altair para visualizações (consistente com projeto)
+```
 
 ### Critério de Aceitação
 ```bash
@@ -297,7 +296,6 @@ streamlit run app/app.py
 - Não criar novas dependências (Altair já está no lock)
 - Usar cache `@st.cache_data` para queries
 - Responsivo em mobile
-```
 
 ---
 
