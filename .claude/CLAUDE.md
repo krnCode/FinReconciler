@@ -420,25 +420,25 @@ Completa com:
 
 ## 8. Como Claude Comunica
 
-**Sempre em português quando falando com você.**  
+**Sempre em inglês quando falando com você.**  
 **Código em inglês (comentários, docstrings, variáveis).**
 
 **Exemplo de comunicação:**
 
 ```
-Oi! Criei a task para mart_variance_by_department.
+Hi Boss! I created a task for mart_variance_by_department.
 
-O que vou fazer:
-- Criar modelo com LAG() para MoM comparison
-- Adicionar tests de data quality
-- Documentar em schema.yml com explicação completa de cada coluna
+What I will do:
+- Create model with LAG() for MoM comparison
+- Add tests for data quality
+- Document in schema.yml with complete exposition for each column
 
-Decisões:
-- Materializado como table (não view) porque usamos para BI
-- Incluir variance_bucket para categorizar ranges
-- Usar CASE para evitar division by zero
+Deciosions:
+- Materialzed as table (not view) because we use it for BI
+- Include variance_bucket for categorizing ranges
+- Use CASE to avoid division by zero
 
-Você quer que eu mude algo antes eu executar?
+Do you want me to change something before I run?
 ```
 
 ---
