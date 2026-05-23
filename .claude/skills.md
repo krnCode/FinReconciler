@@ -87,10 +87,7 @@ Erro: Test `unique_ap_id` failed
 
 ### 1.5 Geração de Código
 
-- ✅ Criar modelos dbt (staging, intermediate, marts)
-- ✅ Escrever SQL (queries complexas, window functions, CTEs)
 - ✅ Criar scripts Python (data generation, initialization)
-- ✅ Gerar macros dbt (custom SQL functions)
 - ✅ Setup Streamlit pages (básico)
 
 ---
@@ -99,6 +96,9 @@ Erro: Test `unique_ap_id` failed
 
 ### 2.1 Executar Código
 
+- ❌ **Não Gera macros dbt** (custom SQL functions) — Claude avalia e sugere alterações quando necessário
+- ❌ **Não escreve SQL** (queries complexas, window functions, CTEs) — Claude avalia e sugere alterações quando necessário
+- ❌ **Não cria** modelos dbt (staging, intermediate, marts) — Claude apenas sugere e você valida
 - ❌ **Não roda** `dbt run`, `dbt test`, `python scripts/...`
 - ❌ **Você executa** — Claude apenas sugere e você valida
 
@@ -404,12 +404,12 @@ Claude cria para **local testing** (100K). Produção você escala conforme nece
 
 | Preciso de... | Claude Faz? | Comando |
 |---|---|---|
-| Novo modelo dbt | ✅ | Tarefa em TASKS.md |
 | 100K dados | ✅ | Tarefa em TASKS.md |
 | Testes SQL | ✅ | Tarefa em TASKS.md |
 | Documentação | ✅ | Tarefa em TASKS.md |
 | Corrigir erro | ✅ | Mostra erro, Claude sugere |
 | Feature Streamlit | ✅ (básico) | Tarefa em TASKS.md |
+| Novo modelo dbt | ❌ (sem solicitar) | Tarefa em TASKS.md |
 | Refactor SQL | ❌ (sem solicitar) | Tarefa em TASKS.md |
 | Execução | ❌ | Você roda |
 | Análise de insights | ❌ | Você faz |
