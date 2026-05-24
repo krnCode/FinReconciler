@@ -40,7 +40,7 @@
 
 | ID | Task | Priority | Status | Claude Approves? | Feedback 
 |---|---|---|---|---|---|
-| [1] | Create project folder structure | High | 🆕 | No | - |
+| [1] | Create project folder structure | High | ✅ | No | Done correctly, but I had to specify that it was only to create folders |
 | [2] | Generate/update the README.md | High | 🆕 | No | - | 
 | [3] | 
 | [4] | 
