@@ -41,39 +41,77 @@
 | ID | Task | Priority | Status | Claude Approves? | Feedback 
 |---|---|---|---|---|---|
 | [1] | Create project folder structure | High | ✅ | No | Done correctly, but I had to specify that it was only to create folders |
-| [2] | Generate/update the README.md | High | 🆕 | No | - | 
+| [2] | Generate/update the README.md | High | ✅ | Yes | Done, minor changes made before creating the final file | 
 | [3] | 
 | [4] | 
 | [5] | 
 
 ## Backlog
 
-- [ ] Create project folder structure
-- [ ] Generate/update the README.md
-- [ ] 
-- [ ] 
-- [ ] 
+- [ ] Create mock data with Polars
+- [ ] Create duckdb structure
+- [ ] Start analysis
+- [X] Generate/update the README.md
+- [X] Create project folder structure
 
 ---
 
 ## Tasks
 
+## Task 2 : Generate/update the README.md
+
+**Priority:** High
+**Category:** Docs  
+**Status:** ✅ Completed
+
+### Description
+Create a README.md file documenting the project status, tech stack, completed tasks, and next steps. Include tech stack badges and explain that mock data is generated with Polars simulating real-world scenarios.
+
+### Requirements
+- [X] Add tech stack badges (Python, DuckDB, dbt, Streamlit, Status)
+- [X] Explain in Overview section that mock data is generated with Polars simulating real-world data
+- [X] Create "What's Done" section showing current progress (Tasks 1 and 2 completed)
+- [X] Create "Next Steps" section with upcoming tasks
+- [X] Add Tech Stack table explaining each component
+- [X] Include basic setup instructions
+- [X] Add project structure overview
+- [X] Link to documentation (CLAUDE.md, TASKS.md, skills.md)
+- [X] Note that project is work in progress
+
+### Context
+- README will be updated constantly as project progresses
+- Will be pushed to GitHub (portfolio project)
+- Reflects current project status
+- Based on CLAUDE.md project structure and guidelines
+
+### Acceptance Criteria
+- [X] README.md created and readable
+- [X] Badges display correctly
+- [X] Clear explanation about mock data using Polars
+- [X] Current status reflects completed Tasks 1 and 2
+- [X] All sections properly formatted
+
+### Notes
+- Living document, will be updated frequently
+- Must match project tone (portfolio/showcase quality)
+
+---
+
 ## Task 1 : Create project folder structure
 
 **Prioridade:** High
 **Categoria:** Project Setup  
-**Status:** 🆕 Novo
+**Status:** ✅ Completed
 
 ### Descrição
 Criar estrutura de pastas e arquivos para o projeto.
 
 ### Requisitos
-- [ ] Folders that contain sensitive information, such as auths, passwords, tokens, etc, should be included in .gitignore.
-- [ ] Pastas que são referente aos models do dbt devem ser criadas em models/, e conter as etapas staging, intermediate e marts.
-- [ ] Folders that are related to dbt, such as tests, and documentation should be created in the finreconciler_dbt/ folder.
-- [ ] Folders that are related to dbt models (models/) and tests (tests/) should be created in the finreconciler_dbt/models/ (staging, intermediate, marts)
-- [ ] A estrutura deve ser intuitiva e fácil de entender.
-- [ ] The folder structure should be organized in a way that makes it easy to read and understand.
+- [X] Folders that contain sensitive information, such as auths, passwords, tokens, etc, should be included in .gitignore.
+- [X] Pastas que são referente aos models do dbt devem ser criadas em models/, e conter as etapas staging, intermediate e marts.
+- [X] Folders that are related to dbt, such as tests, and documentation should be created in the finreconciler_dbt/ folder.
+- [X] Folders that are related to dbt models (models/) and tests (tests/) should be created in the finreconciler_dbt/models/ (staging, intermediate, marts)
+- [X] The folder structure should be organized in a way that makes it easy to read and understand.
 
 ### Contexto / Referências
 Consider the project goal, as described in the CLAUDE.md file.
