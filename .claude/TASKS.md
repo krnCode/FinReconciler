@@ -21,7 +21,7 @@
 4. **Você aprova:** "Sim, pode executar" ou "Muda isso"
 5. **Claude executa:** Cria arquivos, você roda `dbt run` etc
 6. **Você marca:** Status como ✅ Concluído
-7.  **Os status são:** 🆕 Novo, 🔄 Em Progresso, ✅ Concluído
+7. **Os status são:** 🆕 New, 🔄 In Progress, ✅ Done
 
 ---
 
@@ -38,25 +38,88 @@
 
 ## Task List
 
-| ID | Task | Priority | Status | Claude Approves? | Feedback 
-|---|---|---|---|---|---|
-| [1] | Create project folder structure | High | ✅ | No | Done correctly, but I had to specify that it was only to create folders |
-| [2] | Generate/update the README.md | High | ✅ | Yes | Done, minor changes made before creating the final file | 
-| [3] | 
+| ID | Task | Priority | Status | Claude Approves? | Date Completed | Feedback 
+|---|---|---|---|---|---|---|
+| [1] | Create project folder structure | High | ✅ | No | 2026-05-24 | Done correctly, but I had to specify that it was only to create folders |
+| [2] | Generate/update the README.md | High | ✅ | Yes | 2026-05-24 | Done, minor changes made before creating the final file | 
+| [3] | Create mock data with Polars | High | ✅ | Yes | 2026-05-24 | All requirements met, data generated successfully 
 | [4] | 
 | [5] | 
 
 ## Backlog
 
-- [ ] Create mock data with Polars
+- [X] Create mock data with Polars
 - [ ] Create duckdb structure
 - [ ] Start analysis
-- [X] Generate/update the README.md
-- [X] Create project folder structure
 
 ---
 
 ## Tasks
+
+## Task 3 : Create mock data with Polars
+
+**Priority:** High
+**Category:** Data Creation  
+**Status:** ✅ Completed
+
+### Description
+Create 100k records with realistic variance using Polars.
+
+### Requirements
+- [X] Data must be generated with Polars
+- [X] After creating the mock data, it must be saved as CSV in the `data/raw/` folder
+- [X] The scripts must be saved in the `scripts/` folder
+- [X] One script per table (Accounts Payable, Accounts Receivable, General Ledger)
+- [X] The data must follow the objectives of the project
+- [X] It should contain mismatched records (intentional) for reconciliation testing
+- [X] It should be seeded with a random number for reproducibility
+- [X] Keep the structure of the script modular, so it can be easily extended and reused
+- [X] If needed, create a new folder for helper functions inside the `scripts/` folder
+- [X] Include raw data in .gitignore
+- [X] Create documentation explaining how the data was generated
+
+### Context
+- Based on CLAUDE.md project structure and guidelines
+- Data will be saved in the `data/raw/` folder
+- If needed, create a schema file to be used to generate the data
+
+### Acceptance Criteria
+- [X] 100k records are generated with realistic variance
+- [X] Records are saved as CSV in the `data/raw/` folder
+- [X] One file per table (Accounts Payable, Accounts Receivable, General Ledger)
+- [X] Polars was used to generate the data
+- [X] Scripts are saved in the `scripts/` folder
+- [X] Scripts are modular and can be easily extended and reused
+- [X] Scripts are documented with Google style docstrings
+- [X] Scripts are seeded with a random number for reproducibility
+- [X] Scripts are modular and can be easily extended and reused
+- [X] .gitignore includes the raw data folder (big files for github)
+- [X] Documentation explains how the data was generated
+
+### Notes
+- Information must be in English
+- Must have a documentation of how the data was generated
+- Must follow the CLAUDE.md project structure and guidelines
+- Three tables: one script, one file and one schema per table
+- Mismatched definition: a mismatch in this context would mean 
+different values, different amounts, different dates, records not in general ledger
+- Schemas:
+  Accounts Payable - ap_id, vendor_id, invoice_num, amount, invoice_date, status
+  Accounts Receivable - ar_id, vendor_id, invoice_num, amount, invoice_date, status
+  General Ledger - gl_id, department, amount, date
+- Helper functions definition: Functions that can be used more than once in the project,
+such as generating random dates, generating random amounts, etc.
+- Documentation about the data generation process: it should inform the reader about
+the data generation process, including the assumptions, the data structure, the steps
+taken to generate the data, the stack used, the schemas defined, the outputs generated,
+and any other relevant information. The documentation should be clear, concise, and
+easy to understand. Opt for simplicity (be direct and to the point, separate itens 
+clearly in the markdown file).
+- Seeding: it must have the seed used in the code and in the documentation to be
+reproducible and also have the ability to change the seed so it can be used to generate
+different data sets and different results for new reconciliations.
+
+---
 
 ## Task 2 : Generate/update the README.md
 
