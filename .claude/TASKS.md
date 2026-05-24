@@ -42,13 +42,13 @@
 |---|---|---|---|---|---|---|
 | [1] | Create project folder structure | High | ✅ | No | 2026-05-24 | Done correctly, but I had to specify that it was only to create folders |
 | [2] | Generate/update the README.md | High | ✅ | Yes | 2026-05-24 | Done, minor changes made before creating the final file | 
-| [3] | Create mock data with Polars | High | 🆕 | No | 
+| [3] | Create mock data with Polars | High | ✅ | Yes | 2026-05-24 | All requirements met, data generated successfully 
 | [4] | 
 | [5] | 
 
 ## Backlog
 
-- [ ] Create mock data with Polars
+- [X] Create mock data with Polars
 - [ ] Create duckdb structure
 - [ ] Start analysis
 
@@ -60,23 +60,23 @@
 
 **Priority:** High
 **Category:** Data Creation  
-**Status:** 🆕 New
+**Status:** ✅ Completed
 
 ### Description
 Create 100k records with realistic variance using Polars.
 
 ### Requirements
-- [ ] Data must be generated with Polars
-- [ ] After creating the mock data, it must be saved as CSV in the `data/raw/` folder
-- [ ] The scripts must be saved in the `scripts/` folder
-- [ ] One script per table (Accounts Payable, Accounts Receivable, General Ledger)
-- [ ] The data must follow the objectives of the project
-- [ ] It should contain mismatched records (intentional) for reconciliation testing
-- [ ] It should be seeded with a random number for reproducibility
-- [ ] Keep the structure of the script modular, so it can be easily extended and reused
-- [ ] If needed, create a new folder for helper functions inside the `scripts/` folder
-- [ ] Include raw data in .gitignore
-- [ ] Create documentation explaining how the data was generated
+- [X] Data must be generated with Polars
+- [X] After creating the mock data, it must be saved as CSV in the `data/raw/` folder
+- [X] The scripts must be saved in the `scripts/` folder
+- [X] One script per table (Accounts Payable, Accounts Receivable, General Ledger)
+- [X] The data must follow the objectives of the project
+- [X] It should contain mismatched records (intentional) for reconciliation testing
+- [X] It should be seeded with a random number for reproducibility
+- [X] Keep the structure of the script modular, so it can be easily extended and reused
+- [X] If needed, create a new folder for helper functions inside the `scripts/` folder
+- [X] Include raw data in .gitignore
+- [X] Create documentation explaining how the data was generated
 
 ### Context
 - Based on CLAUDE.md project structure and guidelines
@@ -84,17 +84,17 @@ Create 100k records with realistic variance using Polars.
 - If needed, create a schema file to be used to generate the data
 
 ### Acceptance Criteria
-- [ ] 100k records are generated with realistic variance
-- [ ] Records are saved as CSV in the `data/raw/` folder
-- [ ] One file per table (Accounts Payable, Accounts Receivable, General Ledger)
-- [ ] Polars was used to generate the data
-- [ ] Scripts are saved in the `scripts/` folder
-- [ ] Scripts are modular and can be easily extended and reused
-- [ ] Scripts are documented with Google style docstrings
-- [ ] Scripts are seeded with a random number for reproducibility
-- [ ] Scripts are modular and can be easily extended and reused
-- [ ] .gitignore includes the raw data folder (big files for github)
-- [ ] Documentation explains how the data was generated
+- [X] 100k records are generated with realistic variance
+- [X] Records are saved as CSV in the `data/raw/` folder
+- [X] One file per table (Accounts Payable, Accounts Receivable, General Ledger)
+- [X] Polars was used to generate the data
+- [X] Scripts are saved in the `scripts/` folder
+- [X] Scripts are modular and can be easily extended and reused
+- [X] Scripts are documented with Google style docstrings
+- [X] Scripts are seeded with a random number for reproducibility
+- [X] Scripts are modular and can be easily extended and reused
+- [X] .gitignore includes the raw data folder (big files for github)
+- [X] Documentation explains how the data was generated
 
 ### Notes
 - Information must be in English
