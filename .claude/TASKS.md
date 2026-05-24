@@ -1,12 +1,100 @@
-# TASKS.md — Task Template & Examples
+# TASKS.md — Task & Backlog List
 
-**FinReconciler | Paulo Santana**
+**FinReconciler**
+---
 
-Use este arquivo para especificar tarefas ao Claude Code. Siga o template abaixo para cada nova tarefa.
+**Última atualização:** 2026-05-24  
+**Próxima revisão:** Após primeira batch de tarefas completadas
+
+---
+### Overview
+* Use este arquivo para especificar tarefas ao Claude Code. Siga o template abaixo para cada nova tarefa. 
+* No topo da página, seção "Task & Backlog List" está a lista de tarefas ativas e backlog.
+* Na seção "Exemplos" estão alguns exemplos de tarefas.
+---
+
+## Como Usar Este Arquivo
+
+1. **Você escreve:** Uma tarefa usando o template abaixo
+2. **Claude lê:** Entende requisitos, contexto, critério
+3. **Claude sugere:** "Aqui está meu plano: [...]"
+4. **Você aprova:** "Sim, pode executar" ou "Muda isso"
+5. **Claude executa:** Cria arquivos, você roda `dbt run` etc
+6. **Você marca:** Status como ✅ Concluído
+7.  **Os status são:** 🆕 Novo, 🔄 Em Progresso, ✅ Concluído
+
+---
+
+## Tips
+
+- **Seja específico:** "Cria modelo X" é vago. "Cria modelo X com FULL OUTER JOIN para encontrar Y" é bom.
+- **Contexto é ouro:** Link para models existentes, referencias, assumptions.
+- **Critério claro:** Como você valida se está pronto?
+- **Uma tarefa por seção:** Não misture "cria modelo" com "refatora SQL antigo".
+
+---
+
+# Task & Backlog List
+
+## Task List
+
+| ID | Task | Priority | Status | Claude Approves? | Feedback 
+|---|---|---|---|---|---|
+| [1] | Create project folder structure | High | 🆕 | No | - |
+| [2] | Generate/update the README.md | High | 🆕 | No | - | 
+| [3] | 
+| [4] | 
+| [5] | 
+
+## Backlog
+
+- [ ] Create project folder structure
+- [ ] Generate/update the README.md
+- [ ] 
+- [ ] 
+- [ ] 
+
+---
+
+## Tasks
+
+## Task 1 : Create project folder structure
+
+**Prioridade:** High
+**Categoria:** Project Setup  
+**Status:** 🆕 Novo
+
+### Descrição
+Criar estrutura de pastas e arquivos para o projeto.
+
+### Requisitos
+- [ ] Folders that contain sensitive information, such as auths, passwords, tokens, etc, should be included in .gitignore.
+- [ ] Pastas que são referente aos models do dbt devem ser criadas em models/, e conter as etapas staging, intermediate e marts.
+- [ ] Folders that are related to dbt, such as tests, and documentation should be created in the finreconciler_dbt/ folder.
+- [ ] Folders that are related to dbt models (models/) and tests (tests/) should be created in the finreconciler_dbt/models/ (staging, intermediate, marts)
+- [ ] A estrutura deve ser intuitiva e fácil de entender.
+- [ ] The folder structure should be organized in a way that makes it easy to read and understand.
+
+### Contexto / Referências
+Consider the project goal, as described in the CLAUDE.md file.
+In the CLAUDE.md file, there is the initial project structure, with folders and files.
+In this moment, only the folders should be created.
+The project will be done in English.
+
+### Critério de Aceitação
+* Folders with sensitive information should be included in .gitignore.
+* The folder structure should be well organized and easy to understand.
+* The project is in an initial state, as if it were a new project.
+
+### Notas
+* Never assume anything. Ask for clarification if needed.
+* You can use the CLAUDE.md file as a reference.
+* Opt for clarity and simplicity
 
 ---
 
 ## Template
+
 
 ```markdown
 ## Task: [Nome Descritivo]
@@ -34,6 +122,9 @@ Use este arquivo para especificar tarefas ao Claude Code. Siga o template abaixo
 ```
 
 ---
+
+# Exemplos
+
 
 ## Exemplo 1: Criar um Modelo dbt
 
@@ -299,47 +390,4 @@ streamlit run app/app.py
 
 ---
 
-## Task List (Ativa)
 
-| ID | Tarefa | Prioridade | Status | Claude Aprova? |
-|---|---|---|---|---|
-| [1] | Create mart_ap_gl_match | High | 🆕 | - |
-| [2] | Generate 100K AP data | High | 🆕 | - |
-| [3] | Add reconciliation tests | Medium | 🆕 | - |
-| [4] | Document schema.yml | Medium | 🆕 | - |
-| [5] | Debug variance_logic test | High | 🔄 | - |
-
----
-
-## Como Usar Este Arquivo
-
-1. **Você escreve:** Uma tarefa usando o template acima
-2. **Claude lê:** Entende requisitos, contexto, critério
-3. **Claude sugere:** "Aqui está meu plano: [...]"
-4. **Você aprova:** "Sim, pode executar" ou "Muda isso"
-5. **Claude executa:** Cria arquivos, você roda `dbt run` etc
-6. **Você marca:** Status como ✅ Concluído
-
----
-
-## Tips
-
-- **Seja específico:** "Cria modelo X" é vago. "Cria modelo X com FULL OUTER JOIN para encontrar Y" é bom.
-- **Contexto é ouro:** Link para models existentes, referencias, assumptions.
-- **Critério claro:** Como você valida se está pronto?
-- **Uma tarefa por seção:** Não misture "cria modelo" com "refatora SQL antigo".
-
----
-
-## Próximas Tarefas (Backlog)
-
-- [ ] Setup CI/CD com GitHub Actions
-- [ ] Performance tuning (índices no DuckDB)
-- [ ] Incremental models em dbt
-- [ ] Macros customizados (safe_divide, variance_bucket)
-- [ ] Integração dbt-expectations (advanced tests)
-
----
-
-**Última atualização:** 2026-05-23  
-**Próxima revisão:** Após primeira batch de tarefas completadas
