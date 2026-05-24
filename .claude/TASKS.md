@@ -21,7 +21,7 @@
 4. **Você aprova:** "Sim, pode executar" ou "Muda isso"
 5. **Claude executa:** Cria arquivos, você roda `dbt run` etc
 6. **Você marca:** Status como ✅ Concluído
-7.  **Os status são:** 🆕 Novo, 🔄 Em Progresso, ✅ Concluído
+7. **Os status são:** 🆕 New, 🔄 In Progress, ✅ Done
 
 ---
 
@@ -38,11 +38,11 @@
 
 ## Task List
 
-| ID | Task | Priority | Status | Claude Approves? | Feedback 
-|---|---|---|---|---|---|
-| [1] | Create project folder structure | High | ✅ | No | Done correctly, but I had to specify that it was only to create folders |
-| [2] | Generate/update the README.md | High | ✅ | Yes | Done, minor changes made before creating the final file | 
-| [3] | 
+| ID | Task | Priority | Status | Claude Approves? | Date Completed | Feedback 
+|---|---|---|---|---|---|---|
+| [1] | Create project folder structure | High | ✅ | No | 2026-05-24 | Done correctly, but I had to specify that it was only to create folders |
+| [2] | Generate/update the README.md | High | ✅ | Yes | 2026-05-24 | Done, minor changes made before creating the final file | 
+| [3] | Create mock data with Polars | High | 🆕 | No | 
 | [4] | 
 | [5] | 
 
@@ -51,12 +51,57 @@
 - [ ] Create mock data with Polars
 - [ ] Create duckdb structure
 - [ ] Start analysis
-- [X] Generate/update the README.md
-- [X] Create project folder structure
 
 ---
 
 ## Tasks
+
+## Task 3 : Create mock data with Polars
+
+**Priority:** High
+**Category:** Data Creation  
+**Status:** 🆕 New
+
+### Description
+Create 100k records with realistic variance using Polars.
+
+### Requirements
+- [ ] Data must be generated with Polars
+- [ ] After creating the mock data, it must be saved as CSV in the `data/raw/` folder
+- [ ] The scripts must be saved in the `scripts/` folder
+- [ ] One script per table (Accounts Payable, Accounts Receivable, General Ledger)
+- [ ] The data must follow the objectives of the project
+- [ ] It should contain mismatched records (intentional) for reconciliation testing
+- [ ] It should be seeded with a random number for reproducibility
+- [ ] Keep the structure of the script modular, so it can be easily extended and reused
+- [ ] If needed, create a new folder for helper functions inside the `scripts/` folder
+- [ ] Include raw data in .gitignore
+- [ ] Create documentation explaining how the data was generated
+
+### Context
+- Based on CLAUDE.md project structure and guidelines
+- Data will be saved in the `data/raw/` folder
+- If needed, create a schema file to be used to generate the data
+
+### Acceptance Criteria
+- [ ] 100k records are generated with realistic variance
+- [ ] Records are saved as CSV in the `data/raw/` folder
+- [ ] One file per table (Accounts Payable, Accounts Receivable, General Ledger)
+- [ ] Polars was used to generate the data
+- [ ] Scripts are saved in the `scripts/` folder
+- [ ] Scripts are modular and can be easily extended and reused
+- [ ] Scripts are documented with Google style docstrings
+- [ ] Scripts are seeded with a random number for reproducibility
+- [ ] Scripts are modular and can be easily extended and reused
+- [ ] .gitignore includes the raw data folder (big files for github)
+- [ ] Documentation explains how the data was generated
+
+### Notes
+- Information must be in English
+- It must be documented with Google style docstrings
+- Must have a documentation of how the data was generated
+
+---
 
 ## Task 2 : Generate/update the README.md
 
