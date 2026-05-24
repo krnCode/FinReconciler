@@ -98,8 +98,26 @@ Create 100k records with realistic variance using Polars.
 
 ### Notes
 - Information must be in English
-- It must be documented with Google style docstrings
 - Must have a documentation of how the data was generated
+- Must follow the CLAUDE.md project structure and guidelines
+- Three tables: one script, one file and one schema per table
+- Mismatched definition: a mismatch in this context would mean 
+different values, different amounts, different dates, records not in general ledger
+- Schemas:
+  Accounts Payable - ap_id, vendor_id, invoice_num, amount, invoice_date, status
+  Accounts Receivable - ar_id, vendor_id, invoice_num, amount, invoice_date, status
+  General Ledger - gl_id, department, amount, date
+- Helper functions definition: Functions that can be used more than once in the project,
+such as generating random dates, generating random amounts, etc.
+- Documentation about the data generation process: it should inform the reader about
+the data generation process, including the assumptions, the data structure, the steps
+taken to generate the data, the stack used, the schemas defined, the outputs generated,
+and any other relevant information. The documentation should be clear, concise, and
+easy to understand. Opt for simplicity (be direct and to the point, separate itens 
+clearly in the markdown file).
+- Seeding: it must have the seed used in the code and in the documentation to be
+reproducible and also have the ability to change the seed so it can be used to generate
+different data sets and different results for new reconciliations.
 
 ---
 
