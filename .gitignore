@@ -8,3 +8,12 @@ wheels/
 
 # Virtual environments
 .venv
+
+# Generated data (large CSV files)
+data/raw/*.csv
+data/raw/
+
+# DuckDB databases
+*.duckdb
+*.duckdb-shm
+*.duckdb-wal
