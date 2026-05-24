@@ -28,19 +28,22 @@ FinReconciler é um pipeline **production-grade** de reconciliação e análise 
 
 ```
 finreconciler/
-├── models/              → dbt models (staging, intermediate, marts)
+├── .claude/             → Claude Code manual
+    ├── CLAUDE.md        → Este arquivo
+    ├── skills.md        → Capabilities & checklist
+    └── TASKS.md         → Task template
+├── .dbt/                → dbt profile yml
+├── finreconciler_dbt/   → dbt project
+    ├── models/          → dbt models (staging, intermediate, marts)
+    ├── tests/           → dbt tests (SQL + generic)
+    └── dbt_project.yml  → Config dbt
 ├── scripts/             → Python (geração de dados, inicialização)
-├── app/                 → Streamlit frontend
-├── data/                → CSVs (raw/, seeds/)
-├── tests/               → dbt tests (SQL + generic)
+├── streamlit_app/       → Streamlit frontend
+├── data/                → CSVs (raw/, seeds/), databases (duckdb)
 ├── macros/              → Custom SQL functions
 ├── docs/                → Markdown documentation
 ├── pyproject.toml       → Dependências (uv)
-├── dbt_project.yml      → Config dbt
-├── profiles.yml         → DuckDB connection
-├── CLAUDE.md            → Este arquivo
-├── skills.md            → Capabilities & checklist
-└── TASKS.md             → Task template
+└── profiles.yml         → DuckDB connection
 ```
 
 ---
