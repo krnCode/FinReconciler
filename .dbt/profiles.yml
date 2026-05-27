@@ -1,0 +1,9 @@
+finreconciler_dbt:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: .\data\duckdb\finreconciler.ddb
+      schema: main
+      threads: 4
+      timeout_seconds: 300
