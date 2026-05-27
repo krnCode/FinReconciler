@@ -17,3 +17,10 @@ data/raw/
 *.duckdb
 *.duckdb-shm
 *.duckdb-wal
+
+# Logs
+logs/
+*.log
+
+# DuckDB database
+*.ddb
