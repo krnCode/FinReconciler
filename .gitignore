@@ -10,8 +10,8 @@ wheels/
 .venv
 
 # Generated data (large CSV files)
-data/raw/*.csv
-data/raw/
+generated_data/raw/*.csv
+generated_data/raw/
 
 # DuckDB databases
 *.duckdb
