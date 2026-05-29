@@ -12,7 +12,7 @@ wheels/
 # Generated data (large CSV files)
 generated_data/raw/*.csv
 generated_data/raw/
-seeds/*.csv
+finreconciler_dbt/seeds/*.csv
 
 # DuckDB databases
 *.duckdb
