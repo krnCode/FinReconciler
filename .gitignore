@@ -12,6 +12,7 @@ wheels/
 # Generated data (large CSV files)
 generated_data/raw/*.csv
 generated_data/raw/
+seeds/*.csv
 
 # DuckDB databases
 *.duckdb
@@ -22,5 +23,6 @@ generated_data/raw/
 logs/
 *.log
 
-# DuckDB database
-*.ddb
+# dbt artifacts
+dbt_packages/
+target/
