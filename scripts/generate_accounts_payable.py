@@ -26,7 +26,7 @@ def generate_accounts_payable(
     n_records: int = 100_000,
     mismatched_pct: float = 0.05,
     seed: int | None = None,
-    output_path: str | None = None
+    output_path: str | None = None,
 ) -> pl.DataFrame:
     """
     Generate synthetic Accounts Payable data with realistic variance.
@@ -37,7 +37,7 @@ def generate_accounts_payable(
     Args:
         n_records: Number of AP records to generate. Default 100,000.
         mismatched_pct: Percentage of records intentionally not matched in GL (0-1).
-                       Default 0.05 (5%).
+            Default 0.05 (5%).
         seed: Random seed for reproducibility. If None, non-deterministic.
         output_path: Path to save CSV. If None, no file is saved.
 
@@ -92,9 +92,7 @@ def generate_accounts_payable(
             for _ in range(n_records)
         ],
         "status": statuses,
-        "matched_to_gl": [
-            random.random() > mismatched_pct for _ in range(n_records)
-        ],
+        "matched_to_gl": [random.random() > mismatched_pct for _ in range(n_records)],
     }
 
     df = pl.DataFrame(ap_data)
@@ -117,14 +115,13 @@ def generate_accounts_payable(
 if __name__ == "__main__":
     logging.basicConfig(
         level=logging.INFO,
-        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     )
 
     # Generate AP data with seed for reproducibility
-    output_path = Path(__file__).parent.parent / "data" / "raw" / "accounts_payable.csv"
+    output_path = (
+        Path(__file__).parent.parent / "generated_data" / "raw" / "accounts_payable.csv"
+    )
     generate_accounts_payable(
-        n_records=100_000,
-        mismatched_pct=0.05,
-        seed=42,
-        output_path=str(output_path)
+        n_records=100_000, mismatched_pct=0.05, seed=42, output_path=str(output_path)
     )

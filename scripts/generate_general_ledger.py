@@ -25,7 +25,7 @@ def generate_general_ledger(
     n_records: int = 100_000,
     mismatched_pct: float = 0.07,
     seed: int | None = None,
-    output_path: str | None = None
+    output_path: str | None = None,
 ) -> pl.DataFrame:
     """
     Generate synthetic General Ledger data with realistic variance.
@@ -41,7 +41,7 @@ def generate_general_ledger(
     Args:
         n_records: Number of GL records to generate. Default 100,000.
         mismatched_pct: Percentage of GL entries not fully matching AP/AR (0-1).
-                       Default 0.07 (7% - represents posting delays/reclassifications).
+            Default 0.07 (7% - represents posting delays/reclassifications).
         seed: Random seed for reproducibility. If None, non-deterministic.
         output_path: Path to save CSV. If None, no file is saved.
 
@@ -107,9 +107,7 @@ def generate_general_ledger(
 
     # Log summary
     source_counts = df.group_by("source_flag").agg(pl.len().alias("count"))
-    logger.info(
-        f"GL data generation complete. Source distribution:\n{source_counts}"
-    )
+    logger.info(f"GL data generation complete. Source distribution:\n{source_counts}")
 
     return df
 
@@ -138,14 +136,13 @@ def _generate_source_flag(mismatched_pct: float) -> str:
 if __name__ == "__main__":
     logging.basicConfig(
         level=logging.INFO,
-        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     )
 
     # Generate GL data with seed for reproducibility
-    output_path = Path(__file__).parent.parent / "data" / "raw" / "general_ledger.csv"
+    output_path = (
+        Path(__file__).parent.parent / "generated_data" / "raw" / "general_ledger.csv"
+    )
     generate_general_ledger(
-        n_records=100_000,
-        mismatched_pct=0.07,
-        seed=42,
-        output_path=str(output_path)
+        n_records=100_000, mismatched_pct=0.07, seed=42, output_path=str(output_path)
     )

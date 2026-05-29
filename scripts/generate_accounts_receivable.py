@@ -26,7 +26,7 @@ def generate_accounts_receivable(
     n_records: int = 100_000,
     mismatched_pct: float = 0.08,
     seed: int | None = None,
-    output_path: str | None = None
+    output_path: str | None = None,
 ) -> pl.DataFrame:
     """
     Generate synthetic Accounts Receivable data with realistic variance.
@@ -40,7 +40,7 @@ def generate_accounts_receivable(
     Args:
         n_records: Number of AR records to generate. Default 100,000.
         mismatched_pct: Percentage of records intentionally not matched in GL (0-1).
-                       Default 0.08 (8% - higher than AP due to payment complexity).
+            Default 0.08 (8% - higher than AP due to payment complexity).
         seed: Random seed for reproducibility. If None, non-deterministic.
         output_path: Path to save CSV. If None, no file is saved.
 
@@ -77,7 +77,7 @@ def generate_accounts_receivable(
     invoice_numbers = generate_invoice_numbers(n_records, seed=seed)
 
     # AR status distribution: more pending/partial due to payment delays
-    ar_distribution = {'paid': 0.65, 'pending': 0.25, 'partial': 0.10}
+    ar_distribution = {"paid": 0.65, "pending": 0.25, "partial": 0.10}
     statuses = generate_status_list(n_records, distribution=ar_distribution, seed=seed)
 
     # Date range: last 90 days
@@ -98,9 +98,7 @@ def generate_accounts_receivable(
             for _ in range(n_records)
         ],
         "status": statuses,
-        "matched_to_gl": [
-            random.random() > mismatched_pct for _ in range(n_records)
-        ],
+        "matched_to_gl": [random.random() > mismatched_pct for _ in range(n_records)],
     }
 
     df = pl.DataFrame(ar_data)
@@ -123,14 +121,16 @@ def generate_accounts_receivable(
 if __name__ == "__main__":
     logging.basicConfig(
         level=logging.INFO,
-        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     )
 
     # Generate AR data with seed for reproducibility
-    output_path = Path(__file__).parent.parent / "data" / "raw" / "accounts_receivable.csv"
+    output_path = (
+        Path(__file__).parent.parent
+        / "generated_data"
+        / "raw"
+        / "accounts_receivable.csv"
+    )
     generate_accounts_receivable(
-        n_records=100_000,
-        mismatched_pct=0.08,
-        seed=42,
-        output_path=str(output_path)
+        n_records=100_000, mismatched_pct=0.08, seed=42, output_path=str(output_path)
     )
