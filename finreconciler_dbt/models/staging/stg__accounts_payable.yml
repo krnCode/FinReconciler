@@ -24,4 +24,4 @@ models:
       - name: invoice_date
         description: "Date of the invoice."
       - name: status
-        description: "Status of the transaction - 'paid', 'pending', 'disputed'."
+        description: "Status of the transaction. Values: 'paid', 'pending', 'disputed'."
