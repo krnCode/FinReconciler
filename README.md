@@ -5,9 +5,9 @@ A portfolio project demonstrating financial reconciliation and variance analysis
 <!-- Tech Badges -->
 ![Python](https://img.shields.io/badge/Python-3.13+-blue)
 ![DuckDB](https://img.shields.io/badge/DuckDB-Latest-teal)
-![dbt](https://img.shields.io/badge/dbt-Coming%20Soon-orange)
+![dbt](https://img.shields.io/badge/dbt-Latest-green)
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.57+-red)
-![Status](https://img.shields.io/badge/Status-Work%20in%20Progress-yellow)
+![Status](https://img.shields.io/badge/Status-Working%20with%20Intermediate%20Models-yellow)
 
 ---
 
@@ -26,21 +26,21 @@ FinReconciler is a **work-in-progress** financial reconciliation pipeline that r
 - [x] Project folder structure
 - [x] Dependencies configured (DuckDB, Polars, Streamlit, Altair)
 - [x] Project documentation (CLAUDE.md, TASKS.md, skills.md)
-- [ ] dbt setup
-- [ ] Test data generation
-- [ ] SQL models (staging → intermediate → marts)
-- [ ] dbt tests
+- [x] dbt setup
+- [x] Test data generation
+- [x] SQL models — staging layer
+- [ ] SQL models — intermediate layer
+- [ ] SQL models — marts layer
+- [x] dbt tests — staging level
 - [ ] Streamlit dashboard
 
 ---
 
 ## 🚀 Next Steps
 
-1. **dbt Setup** — Add dbt to dependencies, configure profiles.yml
-2. **Data Generation** — Create 100K realistic records (AP, AR, GL) with intentional mismatches
-3. **SQL Models** — Build staging, intermediate, and mart models
-4. **Tests** — Add dbt tests for data quality
-5. **Streamlit Dashboard** — Visualize reconciliation findings
+1. **Intermediate Models** — Build transformation logic on top of the staging layer
+2. **Mart Models** — Build reconciliation and variance analysis models
+3. **Streamlit Dashboard** — Visualize reconciliation findings
 
 ---
 
