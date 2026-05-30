@@ -36,25 +36,116 @@
 
 # Task & Backlog List
 
-## Task List
+<details>
+<summary>Task List</summary>
 
 | ID | Task | Priority | Status | Claude Approves? | Date Completed | Feedback 
 |---|---|---|---|---|---|---|
 | [1] | Create project folder structure | High | ✅ | No | 2026-05-24 | Done correctly, but I had to specify that it was only to create folders |
 | [2] | Generate/update the README.md | High | ✅ | Yes | 2026-05-24 | Done, minor changes made before creating the final file | 
-| [3] | Create mock data with Polars | High | ✅ | Yes | 2026-05-24 | All requirements met, data generated successfully 
-| [4] | 
-| [5] | 
+| [3] | Create mock data with Polars | High | ✅ | Yes | 2026-05-24 | All requirements met, data generated successfully / Found a bug in the date generation in 2026-05-30
+| [4] | Redesign GL structure | High | ✅ | No |2026-30-24 | Done, needed to update the structure of the schema.yml file (include '"' in the descriptions) and tell Claude to not create the _sources.yml file |
+| [5] | Fix date generation bug | High | ✅ | No | 2026-30-24 | Done |
+</details>
 
-## Backlog
+<details> 
+<summary>Backlog</summary>
 
 - [X] Create mock data with Polars
-- [ ] Create duckdb structure
+- [X] Redesing GL structure
+- [X] Fix date generation bug (same date being generated for every record)
+- [X] Create duckdb structure
 - [ ] Start analysis
+</details>
+
+## Tasks
+
+<details>
+<summary>Ongoing Tasks</summary>
+
+
+</details>
+
+<details>
+<summary>Completed Tasks</summary>
+
+## Task 5: Fix date generation bug
+
+**Prioridade:** High  
+**Categoria:** Bug Fix  
+**Status:** 🆕 New
+
+### Descrição
+Fix bug on date generation. It was generating the same date for every record. If there's no difference in the dates, we can't do a variance analysis between months or days.
+
+### Requisitos
+- [X] Make it so that the dates are different for every record on the AP and AR tables
+- [X] Dates must be created in a range of 90 days from the last 3 months
+
+### Contexto / Referências
+Without different dates, we can't do a variance analysis between months, days, etc.
+
+### Critério de Aceitação
+- [X] Dates are different for every record on the AP and AR tables
+- [X] Dates are created in a range of 90 days from the last 3 months
+
+### Notas
+- AP and AR tables can have the same dates, but it should be in different hours
+- The date range should be 90 days from the last 3 months
+- It shoud be possible to compare different months, days, times, etc
 
 ---
 
-## Tasks
+## Task 4: Redesing GL structure
+
+**Priority:** High  
+**Category:** Dados  
+**Status:** 🆕 New
+
+### Description
+Rebuild GL table as a double-entry journal (two lines per transaction, same journal_id, same entry_description, same entry_date)
+
+### Requirements
+- [X] Rebuild GL table as a double-entry journal (two lines per transaction, same journal_id, same entry_description, same entry_date)
+- [X] New structure: gl_id, journal_id,document_ref, account_code, account_name, department, amount, entry_type, entry_description, source_system, posting_date, status
+- [X] GL must be derived from the AP and AR tables
+- [X] Must have controlled noise (~5% AP unposted, ~8% AR unposted, ~3% manual/orphan GL entries)
+- [X] entry_description as a single formatted string that have transaction data
+- [X] Drop matched_to_gl from AP/AR tables - the reconciliation status will be added in the dbt models
+
+### Context
+- The idea of the redesing is to have a simulation of a real GL system, where it have the standard information an ERP would have.
+- The GL must be derived from the AP and AR tables, so we can use the same data for both.
+- It must have controlled noise, so we can implement the reconciliation logic. Without this, the GL would be a perfect copy of the AP and AR tables.
+-The entry_description must be a single formatted string that have transaction data, so we can use it for reporting and validation.
+- entry_description must have a standard format per transaction type (AP, AR, manual entries, adjustments, etc).
+
+### Acceptance Criteria
+ - [X] GL table created and follow the new structure defined
+ - [X] GL must be derived from the AP and AR tables
+ - [X] GL must have double entry journaling following accounting principles (both entries must be balanced)
+ - [X] Must have controlled noise (~5% AP unposted, ~8% AR unposted, ~3% manual/orphan GL entries)
+ - [X] entry_description as a single formatted string that have transaction data and clearly explains the transaction
+ - [X] The column matched_to_gl must have been dropped
+
+### Notes
+- New structure definitions:
+  - gl_id: PK
+  - journal_id: groups the two entries together
+  - document_ref: Links back to AP/AR invoice
+  - account_code: AP Liability, AR Asset, Expense, etc
+  - account_name: Name of the account in the balance sheet or P&L
+  - department: Name of the department/cost center
+  - amount: Value of the transaction from the AP/AR tables
+  - entry_type: debit / credit
+  - entry_description: Formatted string that has transaction data and clearly explains the transaction
+  - source_system: Which subledger generated the transaction (AP, AR, etc)
+  - posting_date: Date of the transaction, may differ from invoice date (posting delay)
+  - status: posted / pending / reversed
+- entry_description format examples: 
+  - AP Invoice INV770487 | Vendor VENDOR00006 | 2026-04-26
+  - AR Invoice INV216739 | Customer CUST00042 | 2026-04-28
+  - Manual Entry GL00094821 | Dept: Finance | Period: 2026-04
 
 ## Task 3 : Create mock data with Polars
 
@@ -123,7 +214,7 @@ different data sets and different results for new reconciliations.
 
 ## Task 2 : Generate/update the README.md
 
-**Priority:** High
+**Priority:** High  
 **Category:** Docs  
 **Status:** ✅ Completed
 
@@ -162,7 +253,7 @@ Create a README.md file documenting the project status, tech stack, completed ta
 
 ## Task 1 : Create project folder structure
 
-**Prioridade:** High
+**Prioridade:** High  
 **Categoria:** Project Setup  
 **Status:** ✅ Completed
 
@@ -191,8 +282,10 @@ The project will be done in English.
 * Never assume anything. Ask for clarification if needed.
 * You can use the CLAUDE.md file as a reference.
 * Opt for clarity and simplicity
+</details>
 
----
+<details>
+<summary>Template</summary>
 
 ## Template
 
@@ -221,11 +314,10 @@ The project will be done in English.
 ### Notas
 [Restrições, decisões já tomadas, etc]
 ```
+</details>
 
----
-
-# Exemplos
-
+<details>
+<summary>Exemplos</summary>
 
 ## Exemplo 1: Criar um Modelo dbt
 
@@ -488,7 +580,4 @@ streamlit run app/app.py
 - Não criar novas dependências (Altair já está no lock)
 - Usar cache `@st.cache_data` para queries
 - Responsivo em mobile
-
----
-
-
+</details>

@@ -1,0 +1,40 @@
+version: 2
+
+sources:
+  - name: finreconciler-duckdb
+    description: "DuckDB database with raw data generated from the Python scripts."
+    schema: raw
+    tables:
+      - name: accounts_payable
+        description: >
+          "Accounts payable table, containing relevant data for reconciliation.
+          One row per ap_id.
+          Column matched_to_gl is used for validation purposes.
+          Columns: 
+            - ap_id: accont payable ID (varchar)
+            - vendor_id: vendor ID (varchar)
+            - invoice_num: invoice number (varchar)
+            - amount: value of the transaction in the invoice (double)
+            - invoice_date: date of the invoice (timestamp)
+            - status: status of the transaction - 'paid', 'pending', 'disputed' (varchar)
+            - matched_to_gl: whether the transaction was matched to a general ledger entry - used for validation (boolean)"
+        columns:
+          - name: ap_id
+            description: "Account payable ID."
+            tests:
+              - unique
+              - not_null
+          - name: vendor_id
+            description: "Vendor ID."
+            tests:
+              - not_null
+          - name: invoice_num
+            description: "Invoice number."
+            tests:
+              - not_null
+          - name: amount
+            description: "Value of the transaction in the invoice."
+          - name: invoice_date
+            description: "Date of the invoice."
+          - name: status
+            description: "Status of the transaction - 'paid', 'pending', 'disputed'."
