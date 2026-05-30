@@ -1,0 +1,27 @@
+version: 1
+
+models:
+  - name: stg__accounts_payable
+    description: >
+      "This model adds the raw data from the accounts_payable table to the staging layer.
+      No transformations are applied to the data in this model."
+    columns:
+      - name: ap_id
+        description: "Accounts payable ID."
+        tests:
+          - unique
+          - not_null
+      - name: vendor_id
+        description: "Vendor ID."
+        tests:
+          - not_null
+      - name: invoice_num
+        description: "Invoice number."
+        tests:
+          - not_null
+      - name: amount
+        description: "Value of the transaction in the invoice."
+      - name: invoice_date
+        description: "Date of the invoice."
+      - name: status
+        description: "Status of the transaction - 'paid', 'pending', 'disputed'."
