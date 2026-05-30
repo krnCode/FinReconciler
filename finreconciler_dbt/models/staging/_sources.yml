@@ -1,15 +1,16 @@
 version: 2
 
 sources:
-  - name: finreconciler-duckdb
-    description: "DuckDB database with raw data generated from the Python scripts."
-    schema: raw
+  - name: finreconciler_duckdb
+    description: >
+      "DuckDB database with raw data generated from the Python scripts."
+    schema: main
     tables:
       - name: accounts_payable
         description: >
           "Accounts payable table, containing relevant data for reconciliation.
           One row per ap_id.
-          Column matched_to_gl is used for validation purposes.
+          PK: ap_id
           Columns: 
             - ap_id: accont payable ID (varchar)
             - vendor_id: vendor ID (varchar)
@@ -17,7 +18,6 @@ sources:
             - amount: value of the transaction in the invoice (double)
             - invoice_date: date of the invoice (timestamp)
             - status: status of the transaction - 'paid', 'pending', 'disputed' (varchar)
-            - matched_to_gl: whether the transaction was matched to a general ledger entry - used for validation (boolean)"
         columns:
           - name: ap_id
             description: "Account payable ID."
@@ -38,3 +38,97 @@ sources:
             description: "Date of the invoice."
           - name: status
             description: "Status of the transaction - 'paid', 'pending', 'disputed'."
+
+      - name: accounts_receivable
+        description: >
+          "Accounts receivable table, containing relevant data for reconciliation.
+          One row per ar_id.
+          PK: ar_id
+          Columns: 
+            - ar_id: accont receivable ID (varchar)
+            - vendor_id: vendor ID (varchar)
+            - invoice_num: invoice number (varchar)
+            - amount: value of the transaction in the invoice (double)
+            - invoice_date: date of the invoice (timestamp)
+            - status: status of the transaction - 'paid', 'pending', 'partial' (varchar)
+        columns:
+          - name: ar_id
+            description: "Account receivable ID."
+            tests:
+              - unique
+              - not_null
+          - name: vendor_id
+            description: "Vendor ID."
+            tests:
+              - not_null
+          - name: invoice_num
+            description: "Invoice number."
+            tests:
+              - not_null
+          - name: amount
+            description: "Value of the transaction in the invoice."
+          - name: invoice_date
+            description: "Date of the invoice."
+          - name: status
+            description: "Status of the transaction - 'paid', 'pending', 'partial'."
+            
+      - name: general_ledger
+        description: >
+          "General ledger table, simulating a double-entry bookkeeping system.
+          One row per gl_id.
+          PK: gl_id
+          Columns: 
+            - gl_id: general ledger ID (varchar)
+            - journal_id: journal ID (varchar)
+            - document_ref: document reference (varchar)
+            - account_code: account code (varchar)
+            - account_name: account name (varchar)
+            - department: department (varchar)
+            - amount: transaction amount (double)
+            - entry_type: transaction type - 'debit' or 'credit' (varchar)
+            - entry_description: transaction description (varchar)
+            - source_system: source system - 'AP', 'AR', 'MANUAL' (varchar)
+            - posting_date: date the entry was posted to GL (timestamp)
+            - status: status of the entry - 'posted', 'pending' (varchar)"
+        columns:
+          - name: gl_id
+            description: "General ledger ID."
+            tests:
+              - unique
+              - not_null
+          - name: journal_id
+            description: "Journal ID."
+            tests:
+              - not_null
+          - name: document_ref
+            description: "Document reference."
+          - name: account_code
+            description: "Account code."
+            tests:
+              - not_null
+          - name: account_name
+            description: "Account name."
+            tests:
+              - not_null
+          - name: department
+            description: "Department."
+            tests:
+              - not_null
+          - name: amount
+            description: "Transaction amount."
+          - name: entry_type
+            description: "Transaction type - 'debit' or 'credit'."
+            tests:
+              - not_null
+          - name: entry_description
+            description: "Transaction description."
+            tests:
+              - not_null
+          - name: source_system
+            description: "Source system - 'AP', 'AR', 'MANUAL'."
+            tests:
+              - not_null
+          - name: posting_date
+            description: "Date the entry was posted to GL."
+          - name: status
+            description: "Status of the entry - 'posted', 'pending'."
