@@ -1,0 +1,49 @@
+version: 1
+
+models:
+  - name: stg__general_ledger
+    description: >
+      "This model adds the raw data from the general_ledger table to the staging layer.
+      No transformations are applied to the data in this model."
+    columns:
+      - name: gl_id
+        description: "General ledger ID. PK."
+        tests:
+          - unique
+          - not_null
+      - name: journal_id
+        description: "Journal ID. Unites both entries in the general ledger"
+        tests:
+          - not_null
+      - name: document_ref
+        description: "Document reference identifier, if available."
+      - name: account_code
+        description: "Account code on the planning accounting system."
+        tests:
+          - not_null
+      - name: account_name
+        description: "Name of the account on the planning accounting system."
+        tests:
+          - not_null
+      - name: department
+        description: "Name of the department/cost center."
+        tests:
+          - not_null
+      - name: amount
+        description: "Amount of the transaction."
+      - name: entry_type
+        description: "Entry type."
+        tests:
+          - not_null
+      - name: entry_description
+        description: "description of the transaction."
+        tests:
+          - not_null
+      - name: source_system
+        description: "Source system that the transaction originated from."
+        tests:
+          - not_null
+      - name: posting_date
+        description: "Date the transaction was posted to the general ledger."
+      - name: status
+        description: "Status of the transaction. Values: posted, pending"
