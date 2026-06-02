@@ -3,34 +3,34 @@
 **FinReconciler**
 ---
 
-**Última atualização:** 2026-05-24  
-**Próxima revisão:** Após primeira batch de tarefas completadas
+**Last Update:** 2026-06-02 
+**Next revision:** After next batch of completed tasks (reviews)
 
 ---
 ### Overview
-* Use este arquivo para especificar tarefas ao Claude Code. Siga o template abaixo para cada nova tarefa. 
-* No topo da página, seção "Task & Backlog List" está a lista de tarefas ativas e backlog.
-* Na seção "Exemplos" estão alguns exemplos de tarefas.
+* Use this file to specify tasks for Claude Code. Follow the template below for each new task.
+* At the top of the page, the "Task & Backlog List" section is a list of active and backlog tasks.
+* The "Examples" section contains some example tasks.
 ---
 
-## Como Usar Este Arquivo
+## How to use this file
 
-1. **Você escreve:** Uma tarefa usando o template abaixo
-2. **Claude lê:** Entende requisitos, contexto, critério
-3. **Claude sugere:** "Aqui está meu plano: [...]"
-4. **Você aprova:** "Sim, pode executar" ou "Muda isso"
-5. **Claude executa:** Cria arquivos, você roda `dbt run` etc
-6. **Você marca:** Status como ✅ Concluído
-7. **Os status são:** 🆕 New, 🔄 In Progress, ✅ Done
+1. **You write:** A task using the template below
+2. **Claude reads:** Understands requirements, context, criteria
+3. **Claude suggests:** "Here's my plan: [...]"
+4. **You approve:** "Yes, I can run" or "Change it"
+5. **Claude executes:** Creates files, you run `dbt run` etc
+6. **You mark:** Status as ✅ Completed
+7. **Statuses are:** 🆕 New, 🔄 In Progress, ✅ Done
 
 ---
 
 ## Tips
 
-- **Seja específico:** "Cria modelo X" é vago. "Cria modelo X com FULL OUTER JOIN para encontrar Y" é bom.
-- **Contexto é ouro:** Link para models existentes, referencias, assumptions.
-- **Critério claro:** Como você valida se está pronto?
-- **Uma tarefa por seção:** Não misture "cria modelo" com "refatora SQL antigo".
+- **Be specific:** "Create model X" is vague. "Create model X with FULL OUTER JOIN to find Y" is better.
+- **Context is gold:** Link to existing models, references, assumptions.
+- **Clear criterion:** How do you validate readiness?
+- **One task per section:** Don't mix "create model" with "refactor old SQL".
 
 ---
 
@@ -43,10 +43,10 @@
 |---|---|---|---|---|---|---|
 | [1] | Create project folder structure | High | ✅ | No | 2026-05-24 | Done correctly, but I had to specify that it was only to create folders |
 | [2] | Generate/update the README.md | High | ✅ | Yes | 2026-05-24 | Done, minor changes made before creating the final file | 
-| [3] | Create mock data with Polars | High | ✅ | Yes | 2026-05-24 | All requirements met, data generated successfully / Found a bug in the date generation in 2026-05-30
-| [4] | Redesign GL structure | High | ✅ | No |2026-30-24 | Done, needed to update the structure of the schema.yml file (include '"' in the descriptions) and tell Claude to not create the _sources.yml file |
-| [5] | Fix date generation bug | High | ✅ | No | 2026-30-24 | Done |
-| [6] | Update project README | Low | ✅ | No | 2026-30-24 | Done, minimal changes made (standard dbt badge description) |
+| [3] | Create mock data with Polars | High | ✅ | Yes | 2026-05-24 | Done, data generated successfully / Found a bug in the datetime generation in 2026-05-30 (created Task 5 to fix it) |
+| [4] | Redesign GL structure | High | ✅ | No | 2026-05-30 | Done, needed to update the structure of the schema.yml file (include '"' in the descriptions) and tell Claude to not create the _sources.yml file |
+| [5] | Fix date generation bug | High | ✅ | No | 2026-05-30 | Done |
+| [6] | Update project README | Low | ✅ | No | 2026-05-30 | Done, minimal changes made (standard dbt badge description) |
 </details>
 
 <details> 
@@ -320,293 +320,291 @@ The project will be done in English.
 
 
 ```markdown
-## Task: [Nome Descritivo]
+## Task: [Descriptive Name]
 
-**Prioridade:** High / Medium / Low  
-**Categoria:** Modelos | Testes | Dados | Docs | Debug  
-**Status:** 🆕 Novo / 🔄 Em Progresso / ✅ Concluído
+**Priority:** High / Medium / Low  
+**Category:** Models | Tests | Data | Docs | Debug  
+**Status:** 🆕 New / 🔄 In Progress / ✅ Done
 
-### Descrição
-[O que precisa ser feito? Por quê?]
+### Description
+[What needs to be done? Why?]
 
-### Requisitos
-- [ ] Requisito 1
-- [ ] Requisito 2
-- [ ] Requisito 3
+### Requirements
+- [ ] Requirement 1
+- [ ] Requirement 2
+- [ ] Requirement 3
 
-### Contexto / Referências
-[Links, exemplos, ou contexto necessário]
+### Context / References
+[Links, examples, or context needed]
 
-### Critério de Aceitação
-[Como você vai validar se está pronto?]
+### Acceptance Criteria
+[How will you validate readiness?]
 
-### Notas
-[Restrições, decisões já tomadas, etc]
+### Notes
+[Restrictions, decisions already made, etc]
 ```
 </details>
 
 <details>
-<summary>Exemplos</summary>
+<summary>Examples</summary>
 
-## Exemplo 1: Criar um Modelo dbt
+## Example 1: Create a dbt Model
 
 ```markdown
 ## Task: Create mart_ap_gl_match Model
 
-**Prioridade:** High  
-**Categoria:** Modelos  
-**Status:** 🆕 Novo
+**Priority:** High  
+**Category:** Models  
+**Status:** 🆕 New
 
-### Descrição
-Criar modelo Mart que reconcilia AP (Accounts Payable) com GL (General Ledger).
-Este é o core de reconciliation do projeto — mostra padrões avançados de SQL.
+### Description
+Create model Mart that reconciles AP (Accounts Payable) with GL (General Ledger).
+This is the core of the reconciliation project — shows advanced SQL patterns.
 
-### Requisitos
-- [ ] Modelo deve usar FULL OUTER JOIN para encontrar matched/unmatched
-- [ ] Deve agregizar por vendor + period (year/month)
-- [ ] Deve calcular variance = ap_amount - gl_amount
-- [ ] Deve marcar status como 'matched' (variance < 0.01) ou 'unmatched'
-- [ ] Totalmente documentado em schema.yml
-- [ ] Testes dbt (not_null, unique key, data quality)
-- [ ] SQL comments explicativos
+### Requirements
+- [ ] Model must use FULL OUTER JOIN to find matched/unmatched
+- [ ] Must aggregate by vendor + period (year/month)
+- [ ] Must calculate variance = ap_amount - gl_amount
+- [ ] Must mark status as 'matched' (variance < 0.01) or 'unmatched'
+- [ ] Totally documented in schema.yml
+- [ ] Tests dbt (not_null, unique key, data quality)
+- [ ] SQL comments explaining
 
-### Contexto
-- Staging models ja existem: `stg_accounts_payable`, `stg_general_ledger`
-- AP amounts devem ser somados por vendor_id + period
-- GL amounts devem ser somados por department + period (filtrando contas 2010, 2020)
-- Usar `coalesce()` no FULL JOIN para evitar nulls na chave
-- Ver `docs/financial_logic.md` para entender lógica de contas
+### Context
+- Staging models already exist: `stg_accounts_payable`, `stg_general_ledger`
+- AP amounts must be summed by vendor_id + period
+- GL amounts must be summed by department + period (filtering accounts 2010, 2020)
+- Use `coalesce()` in FULL JOIN to avoid nulls in key
+- See `docs/financial_logic.md` for accounting logic
 ```
 
-### Critério de Aceitação
+### Acceptance Criteria
 ```bash
-dbt run -s mart_ap_gl_match      # Roda sem erro
-dbt test -s mart_ap_gl_match     # Todos os testes passam
+dbt run -s mart_ap_gl_match      # Runs without error
+dbt test -s mart_ap_gl_match     # All tests pass
 ```
 
-Resultado esperado:
-- ~50K linhas (100K AP × GL agrupados por period)
-- ~85% matched, ~15% unmatched (reflete desalinhamentos propositais nos dados)
-- Variance range: -50K a +50K USD
+Expected result:
+- ~50K rows (100K AP × GL aggregated by period)
+- ~85% matched, ~15% unmatched (reflects proposed losses in the data)
+- Variance range: -50K to +50K USD
 
-### Notas
-- Materializado como `table` (não view) — usado para BI
-- Use macros `safe_divide()` se precisar calcular ratios
-- Não colocar lógica de variância aqui — fica em `mart_variance_monthly`
+### Notes
+- Materialized as `table` (not view) — used for BI
+- Use macros `safe_divide()` if needed to calculate ratios
+- Don't put variance logic here — it's in `mart_variance_monthly`
 
 ---
 
-## Exemplo 2: Gerar Dados de Teste
+## Example 2: Generate Test Data
 
 ```markdown
 ## Task: Generate 100K AP Records with Realistic Variance
 
-**Prioridade:** High  
-**Categoria:** Dados  
-**Status:** 🆕 Novo
+**Priority:** High  
+**Category:** Data  
+**Status:** 🆕 New
 
-### Descrição
-Estender `scripts/generate_source_data.py` para criar dados de AP (Accounts Payable) 
-com padrões financeiros realistas. Será usado para toda a pipeline de testes.
+### Description
+Extend `scripts/generate_source_data.py` to create AP (Accounts Payable) 
+with realistic financial patterns. Used for all pipeline testing.
 
-### Requisitos
-- [ ] Gerar 100,000 registros de AP
-- [ ] Campos: ap_id, vendor_id, invoice_num, amount, invoice_date, gl_date, status
+### Requirements
+- [ ] Generate 100,000 records of AP
+- [ ] Fields: ap_id, vendor_id, invoice_num, amount, invoice_date, gl_date, status
 - [ ] Vendor IDs: 20 vendors (V001-V020)
-- [ ] Amounts: distribuição realista (100-50,000 USD)
-- [ ] Datas: 90 dias de histórico (últimos 3 meses)
+- [ ] Amounts: realistic distribution (100-50,000 USD)
+- [ ] Dates: 90 days of history (last 3 months)
 - [ ] Status: 70% paid, 20% pending, 10% disputed
-- [ ] **Importante:** 5% dos records NÃO terão match no GL (intencionalmente)
+- [ ] **Important:** 5% of records will NOT have match in GL (intentionally)
 - [ ] Full docstring (Google style) + type hints
-- [ ] Logging informativo
-- [ ] Seed parametrizável para reproducibilidade
+- [ ] Logging informative
+- [ ] Seed parameter to reproducibility
 
-### Contexto
-- Código entra em `scripts/generate_source_data.py`
-- Função deve retornar `pl.DataFrame`
-- Dados serão salvos como CSV em `data/raw/accounts_payable.csv`
-- Será chamado por `scripts/init_duckdb.py`
+### Context
+- Code enters `scripts/generate_source_data.py`
+- Function must return `pl.DataFrame`
+- Data will be saved as CSV in `data/raw/accounts_payable.csv`
+- Called by `scripts/init_duckdb.py`
 ```
 
-### Critério de Aceitação
+### Acceptance Criteria
 ```bash
 python scripts/generate_source_data.py
 # Output: "Generated 100,000 AP records in data/raw/"
 
-# Validação local
+# Local validation
 df = pl.read_csv("data/raw/accounts_payable.csv")
 df.shape  # (100000, 7)
 df["status"].value_counts()  # ~70K paid, ~20K pending, ~10K disputed
 df.filter(pl.col("amount") <= 0).height  # 0 (sem negatives)
 ```
 
-### Notas
-- Mismatched records: não incluir no GL (logic fica em `generate_general_ledger()`)
-- Use `random.seed()` ou `pl.Series.shuffle(seed=)` para reproducibilidade
-- Amounts devem ter variação realista (não distribuição normal — use choices com weights)
+### Notes
+- Mismatched records: do not include in GL (logic is in `generate_general_ledger()`)
+- Use `random.seed()` or `pl.Series.shuffle(seed=)` for reproducibility
+- Amounts must have realistic variance (not normal distribution — use choices with weights)
 
 ---
 
-## Exemplo 3: Criar Testes dbt
+## Example 3: Create dbt Tests
 
 ```markdown
 ## Task: Add Data Quality Tests for mart_reconciliation_summary
 
-**Prioridade:** Medium  
-**Categoria:** Testes  
-**Status:** 🆕 Novo
+**Priority:** Medium  
+**Category:** Tests  
+**Status:** 🆕 New
 
-### Descrição
-Adicionar 5+ testes dbt para validar integridade dos dados de reconciliação.
-Foco em edge cases: totals match, status é válido, não há duplicatas, etc.
+### Description
+Add 5+ dbt tests to validate data integrity of reconciliation.
+Focus on edge cases: totals match, status is valid, no duplicates, etc.
 
-### Requisitos
-- [ ] Test 1: `not_null` em colunas críticas (entity, ap_amount, gl_amount, status)
-- [ ] Test 2: `unique` na composite key (entity + year + month)
-- [ ] Test 3: Custom SQL assert — totals match between AP e GL (para matched items)
-- [ ] Test 4: Custom SQL assert — status deve ser 'matched' ou 'unmatched' (no meio-termo)
-- [ ] Test 5: Custom SQL assert — variance < 0.5% para status='matched'
-- [ ] Todos os testes documentados em schema.yml
-- [ ] Testes devem usar `{{ fail_calc() }}` ou `where` para indicar failure
+### Requirements
+- [ ] Test 1: `not_null` on critical columns (entity, ap_amount, gl_amount, status)
+- [ ] Test 2: `unique` on composite key (entity + year + month)
+- [ ] Test 3: Custom SQL assert — totals match between AP and GL (for matched items)
+- [ ] Test 4: Custom SQL assert — status must be 'matched' or 'unmatched' (mid-term)
+- [ ] All tests documented in schema.yml
+- [ ] Tests must use `{{ fail_calc() }}` or `where` to indicate failure
 
-### Contexto
-- Modelo alvo: `marts.mart_reconciliation_summary`
-- Schema.yml já existe em `models/marts/reconciliation/schema.yml`
-- Testes custom ficam em `tests/sql/`
+### Context
+- Target model: `marts.mart_reconciliation_summary`
+- Schema.yml already exists in `models/marts/reconciliation/schema.yml`
+- Custom tests in `tests/sql/`
 ```
 
-### Critério de Aceitação
+### Acceptance Criteria
 ```bash
-dbt test -s mart_reconciliation_summary  # Todos os testes passam
+dbt test -s mart_reconciliation_summary  # All tests pass
 
-# Se houver falha proposital (para validar teste):
-dbt test -s mart_reconciliation_summary --select tag:assert  # Falha esperada
+# If proposed failure (to validate test):
+dbt test -s mart_reconciliation_summary --select tag:assert  # Expected failure
 ```
 
-### Notas
-- Não use `singular` tests (deprecated) — use modelos com `-- config(severity: warn)`
-- Testes devem ser descritivos: `assert_variance_pct_within_tolerance`
-- Se teste falhar, deve ser claro por quê (use comments no SQL)
+### Notes
+- Do not use `singular` tests (deprecated) — use models with `-- config(severity: warn)`
+- Tests must be descriptive: `assert_variance_pct_within_tolerance`
+- If test fails, it must be clear why (use comments in SQL)
 
 ---
 
-## Exemplo 4: Documentação
+## Example 4: Documentation
 
 ```markdown
 ## Task: Write Comprehensive schema.yml for mart_variance_monthly
 
-**Prioridade:** Medium  
-**Categoria:** Docs  
-**Status:** 🆕 Novo
+**Priority:** Medium  
+**Category:** Docs  
+**Status:** 🆕 New
 
-### Descrição
-Documentar completamente o modelo `mart_variance_monthly` seguindo padrão CLAUDE.md.
-Deve incluir descrição detalhada, primary_key, todos os testes, e examples.
+### Description
+Document the `mart_variance_monthly` model fully following CLAUDE.md.
+It must include detailed description, primary_key, all tests, and examples.
 
-### Requisitos
-- [ ] Descrição do modelo (multi-line, explicando propósito, uso, assumptions)
-- [ ] Primary key declarada (entity + year + month)
-- [ ] **Cada coluna documentada:**
-  - name, description (uma frase concisa), data_type (se relevante), tests
-- [ ] Tests incluídos:
-  - not_null para colunas críticas
-  - unique na composite key
-  - accepted_values para variance_bucket
-  - relationships se houver FK
-- [ ] Exemplo de uso / consulta esperada
-- [ ] Anotações de lógica financeira (variância é YTD? MoM? Rolling?)
+### Requirements
+- [ ] Model description (multi-line, explaining purpose, use, assumptions)
+- [ ] Primary key declared (entity + year + month)
+- [ ] **Each column documented:**
+  - name, description (a concise phrase), data_type (if relevant), tests
+- [ ] Tests included:
+  - not_null for critical columns
+  - unique on composite key
+  - accepted_values for variance_bucket
+  - relationships if there is FK
+- [ ] Example of use / query expected
+- [ ] Annotations for financial logic (variance is YTD? MoM? Rolling?)
 
-### Contexto
-- Template: `models/marts/reconciliation/schema.yml` (existe)
-- Adicionar section novo para `mart_variance_monthly`
+### Context
+- Template: `models/marts/reconciliation/schema.yml` (exists)
+- Add new section for `mart_variance_monthly`
 ```
+### Acceptance Criteria
+- Schema.yml validates without error (`dbt parse`)
+- Each column has description > 5 words
+- Each column has ≥1 test
+- Documentation is clear without unnecessary technical jargon
 
-### Critério de Aceitação
-- Schema.yml valida sem erro (`dbt parse`)
-- Cada coluna tem descrição > 5 palavras
-- Cada coluna tem ≥1 test
-- Documentação é clara sem jargão técnico demais
-
-### Notas
-- Descrição deve explicar a **intenção**, não apenas o que é
-- Exemplo: Ruim: "Month and year of transaction"
-- Exemplo: Bom: "Fiscal year and month when variance was calculated. Used to join with calendar for reporting."
+### Notes
+- Description must explain the **intent**, not just what it is
+- Example: Bad: "Month and year of transaction"
+- Example: Good: "Fiscal year and month when variance was calculated. Used to join with calendar for reporting."
 
 ---
 
-## Exemplo 5: Debug
+## Example 5: Debug
 
 ```markdown
 ## Task: Debug Test Failure in test_variance_logic
 
-**Prioridade:** High  
-**Categoria:** Debug  
-**Status:** 🔄 Em Progresso
+**Priority:** High  
+**Category:** Debug  
+**Status:** 🔄 In Progress
 
-### Descrição
-Test `assert_variance_pct_within_tolerance` está falhando.
-Investigar e sugerir correção.
+### Description
+Test `assert_variance_pct_within_tolerance` is failing.
+Investigate and suggest correction.
 
-### Contexto do Erro
+### Context of Error
 Failure in tests/sql/assert_variance_pct_within_tolerance.sql:
 Got 153 rows where variance_pct > 0.05 (5%)
 Expected 0 rows.
 ```
 
-Dados têm ~100K registros, 5% desalinhamentos propositais → variâncias legítimas.
+Data has ~100K records, 5% proposed losses → realistic variances.
 
-### Requisitos
-- [ ] Analisar se é bug no SQL ou na lógica de teste
-- [ ] Se for teste muito restritivo, suggir ajuste
-- [ ] Se for bug, sugerir correção no SQL da variance calc
-- [ ] Validar que correção não quebra outros testes
+### Requirements
+- [ ] Analyze if it's a bug in SQL or in the test logic
+- [ ] If it's a very restrictive test, suggest adjustment
+- [ ] If it's a bug, suggest correction in the variance calculation SQL
+- [ ] Validate that the correction does not break other tests
 
-### Critério de Aceitação
+### Acceptance Criteria
 ```bash
-dbt test -s test_variance_logic  # Passa
+dbt test -s test_variance_logic  # Passes
 ```
-
-### Notas
-- Teste pode estar correto — talvez accuracy expectation precise ajuste
-- Investigar se 5% de variance é aceitável ou não (pergunta: é bug ou feature?)
+### Notes
+- Test can be correct — maybe accuracy expectation needs adjustment
+- Investigate if 5% of variance is acceptable or not (question: is it a bug or feature?)
 
 ---
 
-## Exemplo 6: Feature Streamlit
+
+## Example 6: Feature Streamlit
 
 ```markdown
 ## Task: Add Variance Anomaly Detection to Streamlit
 
-**Prioridade:** Low  
-**Categoria:** Modelos + Docs  
-**Status:** 🆕 Novo
+**Priority:** Low  
+**Category:** Models + Docs  
+**Status:** 🆕 New
 
-### Descrição
-Criar página Streamlit (`pages/3_anomalies.py`) que mostra variâncias anômalas
-(outliers). Usar dados de `mart_variance_monthly` para flagging.
+### Description
+Create Streamlit page (`pages/3_anomalies.py`) that shows variance anomalies
+(outliers). Use data from `mart_variance_monthly` for flagging.
 
-### Requisitos
+### Requirements
 - [ ] Sidebar filter: variance_pct range (slider)
 - [ ] Sidebar filter: variance_bucket (multiselect)
 - [ ] Sidebar filter: entity (multiselect de vendors)
-- [ ] Main: Tabela com anomalias (sorted by variance_pct desc)
+- [ ] Main: Table with anomalies (sorted by variance_pct desc)
 - [ ] Visual: Scatter plot (amount vs variance_pct)
-- [ ] Métrica top: Número de anomalias detadas, avg variance %
+- [ ] Metric top: Number of anomalies details, avg variance %
 
-### Contexto
-- Página entra em `app/pages/3_anomalies.py`
-- Dados: `select * from marts.mart_variance_monthly where variance_pct > 0.05`
-- Usar Altair para visualizações (consistente com projeto)
+### Context
+- Page enters `app/pages/3_anomalies.py`
+- Data: `select * from marts.mart_variance_monthly where variance_pct > 0.05`
+- Use Altair for visualizations (consistent with project)
 ```
 
-### Critério de Aceitação
+### Acceptance Criteria
 ```bash
 streamlit run app/app.py
 # Navigate to "Anomalies" → Deve mostrar dados + filters + charts
 ```
 
-### Notas
-- Não criar novas dependências (Altair já está no lock)
-- Usar cache `@st.cache_data` para queries
-- Responsivo em mobile
+### Notes
+- Do not create new dependencies (Altair is already in lock)
+- Use cache `@st.cache_data` for queries
+- Responsive on mobile
 </details>
