@@ -1,11 +1,11 @@
 with
 
 accounts_payable as (
-    select * from {{ ref('accounts_payable') }}
+    select * from {{ ref('stg__accounts_payable') }}
 ),
 
 general_ledger as (
-    select * from {{ ref('general_ledger') }}
+    select * from {{ ref('stg__general_ledger') }}
 ),
 
 joined as (
