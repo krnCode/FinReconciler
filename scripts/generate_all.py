@@ -16,6 +16,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 from generate_accounts_payable import generate_accounts_payable
 from generate_accounts_receivable import generate_accounts_receivable
 from generate_general_ledger import generate_general_ledger
+from load_duckdb import load_raw_tables
 
 logger = logging.getLogger(__name__)
 
@@ -53,6 +54,8 @@ def main(
         seed=seed,
         output_path=str(raw_path / "general_ledger.csv"),
     )
+
+    load_raw_tables()
 
     logger.info("Data generation complete. Files saved to generated_data/raw/")
 
