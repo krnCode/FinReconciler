@@ -1,0 +1,61 @@
+version: 1
+
+models:
+  - name: int__matched_ar
+    description: >
+      This model finds accounts receivable records matched with general ledger.
+      It also calculates the difference of the amount of every invoice of the two systems.
+    columns:
+      - name: ar_id
+        description: The accounts receivable ID.
+        tests:
+          - unique
+          - not_null
+      - name: gl_id
+        description: The general ledger ID.
+        tests:
+          - not_null
+      - name: ar_vendor_id
+        description: The vendor ID.
+        tests:
+          - not_null
+      - name: gl_vendor_id
+        description: The vendor ID.
+        tests:
+          - not_null
+      - name: invoice_num
+        description: The invoice number.
+        tests:
+          - not_null
+      - name: document_ref
+        description: The document reference.
+        tests:
+          - not_null
+      - name: ar_amount
+        description: The amount.
+        tests:
+          - not_null
+      - name: gl_amount
+        description: The amount.
+        tests:
+          - not_null
+      - name: invoice_date
+        description: The invoice date.
+        tests:
+          - not_null
+      - name: posting_date
+        description: The posting date.
+        tests:
+          - not_null
+      - name: ar_invoice_status
+        description: The status of the accounts receivable invoice.
+        tests:
+          - not_null
+      - name: value_difference
+        description: The difference between the amount of the two systems.
+        tests:
+          - not_null
+      - name: value_status
+        description: The status of the difference between the amount of the two systems.
+        tests:
+          - not_null
