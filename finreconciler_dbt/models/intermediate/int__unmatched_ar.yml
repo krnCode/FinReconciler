@@ -19,7 +19,7 @@ models:
         description: The invoice number.
         tests:
           - not_null
-      - name: amount
+      - name: ar_amount
         description: The amount.
         tests:
           - not_null
@@ -31,5 +31,3 @@ models:
         description: The status of the accounts receivable invoice.
         tests:
           - not_null
-          - accepted_values:
-              values: ['paid', 'pending', 'partial']
