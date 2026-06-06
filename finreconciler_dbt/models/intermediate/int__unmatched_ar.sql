@@ -1,7 +1,7 @@
 with
 
-accounts_payable as (
-    select * from {{ ref('stg__accounts_payable') }}
+accounts_receivable as (
+    select * from {{ ref('stg__accounts_receivable') }}
 ),
 
 general_ledger as (
@@ -11,29 +11,29 @@ general_ledger as (
         {{ ref('stg__general_ledger') }}
 
     where
-        source_system = 'AP'
+        source_system = 'AR'
 ),
 
 joined as (
     select
-        ap.*,
+        ar.*,
         gl.gl_id
 
     from
-        accounts_payable as ap
+        accounts_receivable as ar
 
     left join general_ledger as gl
-        on ap.invoice_num = gl.document_ref
+        on ar.invoice_num = gl.document_ref
 ),
 
 unmatched as (
     select
-        ap_id,
+        ar_id,
         vendor_id,
         invoice_num,
-        amount as ap_amount,
+        amount as ar_amount,
         invoice_date,
-        status as ap_invoice_status
+        status as ar_invoice_status
 
     from
         joined

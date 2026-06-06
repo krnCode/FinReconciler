@@ -1,13 +1,13 @@
 version: 1
 
 models:
-  - name: int__unmatched_ap
+  - name: int__unmatched_ar
     description: >
-      This model finds accounts payable that are not in the general ledger.
+      This model finds accounts receivable that are not in the general ledger.
       All the records represent a mismatch between the two systems.
     columns:
-      - name: ap_id
-        description: The accounts payable ID.
+      - name: ar_id
+        description: The accounts receivable ID.
         tests:
           - unique
           - not_null
@@ -27,9 +27,9 @@ models:
         description: The invoice date.
         tests:
           - not_null
-      - name: ap_invoice_status
-        description: The status of the accounts payable invoice.
+      - name: ar_invoice_status
+        description: The status of the accounts receivable invoice.
         tests:
           - not_null
           - accepted_values:
-              values: ['paid', 'pending', 'disputed']
+              values: ['paid', 'pending', 'partial']
