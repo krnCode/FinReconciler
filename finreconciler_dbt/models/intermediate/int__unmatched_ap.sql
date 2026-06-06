@@ -5,18 +5,24 @@ accounts_payable as (
 ),
 
 general_ledger as (
-    select * from {{ ref('stg__general_ledger') }}
+    select *
+
+    from
+        {{ ref('stg__general_ledger') }}
+
+    where
+        source_system = 'AP'
 ),
 
 joined as (
     select
         ap.*,
-        gl.*
+        gl.gl_id
 
     from
         accounts_payable as ap
 
-    full outer join general_ledger as gl
+    left join general_ledger as gl
         on ap.invoice_num = gl.document_ref
 ),
 
@@ -25,11 +31,15 @@ unmatched as (
         ap_id,
         vendor_id,
         invoice_num,
-        amount,
+        amount as ap_amount,
         invoice_date,
         status as ap_invoice_status
-    from joined
-    where gl_id is null
+
+    from
+        joined
+
+    where
+        gl_id is null
 )
 
 select * from unmatched

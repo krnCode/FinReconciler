@@ -31,3 +31,5 @@ models:
         description: The status of the accounts payable invoice.
         tests:
           - not_null
+          - accepted_values:
+              values: ['paid', 'pending', 'disputed']
