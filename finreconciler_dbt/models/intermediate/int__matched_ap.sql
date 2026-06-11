@@ -17,6 +17,8 @@ general_ledger as (
     where
         source_system = 'AP'
         and account_code = '2100'
+        and status = 'posted'
+        and entry_type = 'credit'
 ),
 
 joined as (
@@ -44,27 +46,42 @@ joined as (
     from
         accounts_payable as ap
 
-    left join general_ledger as gl
+    inner join general_ledger as gl
         on
             ap.invoice_num = gl.document_ref
             and ap.vendor_id = gl.gl_vendor_id
             and cast(ap.invoice_date as date) = cast(gl.gl_invoice_date as date)
 ),
 
-value_comparison as (
+gl_match_count as (
     select
-        *,
-        ap_amount - gl_amount as value_difference,
-        case
-            when ap_amount != gl_amount then 'mismatch'
-            else 'match'
-        end as value_status
+        ap_id,
+        count(gl_id) as gl_match_count
 
     from
         joined
 
-    where
-        gl_id is not null
+    group by
+        ap_id
+),
+
+value_comparison as (
+    select
+        j.*,
+        glm.gl_match_count,
+        j.ap_amount - j.gl_amount as value_difference,
+        case
+            when (j.ap_amount - j.gl_amount > 0.01) then 'mismatch'
+            when (j.ap_amount - j.gl_amount < -0.01) then 'mismatch'
+            else 'match'
+        end as value_status
+
+    from
+        joined as j
+
+    left join gl_match_count as glm
+        on
+            j.ap_id = glm.ap_id
 )
 
 select * from value_comparison

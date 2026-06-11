@@ -17,6 +17,8 @@ general_ledger as (
     where
         source_system = 'AR'
         and account_code = '1100'
+        and status = 'posted'
+        and entry_type = 'debit'
 ),
 
 joined as (
@@ -44,27 +46,43 @@ joined as (
     from
         accounts_receivable as ar
 
-    left join general_ledger as gl
+    inner join general_ledger as gl
         on
             ar.invoice_num = gl.document_ref
             and ar.vendor_id = gl.gl_vendor_id
             and cast(ar.invoice_date as date) = cast(gl.gl_invoice_date as date)
 ),
 
-value_comparison as (
+gl_match_count as (
     select
-        *,
-        ar_amount - gl_amount as value_difference,
-        case
-            when ar_amount != gl_amount then 'mismatch'
-            else 'match'
-        end as value_status
+        ar_id,
+        count(gl_id) as gl_match_count
 
     from
         joined
 
-    where
-        gl_id is not null
+    group by
+        ar_id
+),
+
+value_comparison as (
+    select
+        j.*,
+        glm.gl_match_count,
+        j.ar_amount - j.gl_amount as value_difference,
+        case
+            when (j.ar_amount - j.gl_amount > 0.01) then 'mismatch'
+            when (j.ar_amount - j.gl_amount < -0.01) then 'mismatch'
+            else 'match'
+        end as value_status
+
+    from
+        joined as j
+
+    left join gl_match_count as glm
+        on
+            j.ar_id = glm.ar_id
+
 )
 
 select * from value_comparison
