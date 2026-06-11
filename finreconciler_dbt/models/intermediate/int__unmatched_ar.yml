@@ -11,7 +11,7 @@ models:
         tests:
           - unique
           - not_null
-      - name: vendor_id
+      - name: ar_vendor_id
         description: The vendor ID.
         tests:
           - not_null
