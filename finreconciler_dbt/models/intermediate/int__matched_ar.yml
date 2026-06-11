@@ -43,6 +43,10 @@ models:
         description: The invoice date.
         tests:
           - not_null
+      - name: gl_invoice_date
+        description: The general ledger invoice date.
+        tests:
+          - not_null
       - name: posting_date
         description: The posting date.
         tests:
