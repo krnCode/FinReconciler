@@ -3,11 +3,11 @@
 A portfolio project demonstrating financial reconciliation and variance analysis using SQL, dbt, and Python.
 
 <!-- Tech Badges -->
-![Python](https://img.shields.io/badge/Python-3.13+-blue)
+![Python](https://img.shields.io/badge/Python-3.14+-blue)
 ![DuckDB](https://img.shields.io/badge/DuckDB-Latest-teal)
 ![dbt](https://img.shields.io/badge/dbt-Latest-green)
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.57+-red)
-![Status](https://img.shields.io/badge/Status-Working%20with%20Intermediate%20Models-yellow)
+![Status](https://img.shields.io/badge/Status-Working%20on%20Mart%20Models-yellow)
 
 ---
 
@@ -29,18 +29,17 @@ FinReconciler is a **work-in-progress** financial reconciliation pipeline that r
 - [x] dbt setup
 - [x] Test data generation
 - [x] SQL models — staging layer
-- [ ] SQL models — intermediate layer
+- [x] SQL models — intermediate layer
 - [ ] SQL models — marts layer
-- [x] dbt tests — staging level
+- [x] dbt tests — staging & intermediate levels
 - [ ] Streamlit dashboard
 
 ---
 
 ## 🚀 Next Steps
 
-1. **Intermediate Models** — Build transformation logic on top of the staging layer
-2. **Mart Models** — Build reconciliation and variance analysis models
-3. **Streamlit Dashboard** — Visualize reconciliation findings
+1. **Mart Models** — Build reconciliation and variance analysis models
+2. **Streamlit Dashboard** — Visualize reconciliation findings
 
 ---
 
@@ -59,7 +58,7 @@ FinReconciler is a **work-in-progress** financial reconciliation pipeline that r
 ## 📦 Setup (Local Development)
 
 ### Prerequisites
-- Python 3.13+
+- Python 3.14+
 - uv (dependency manager)
 
 ### Installation
@@ -67,7 +66,7 @@ FinReconciler is a **work-in-progress** financial reconciliation pipeline that r
 ```bash
 # Clone and navigate
 git clone <repo>
-cd finreconciler
+cd FinReconciler
 
 # Install dependencies
 uv sync
@@ -80,7 +79,7 @@ finreconciler/
 ├── finreconciler_dbt/      → dbt project (models, tests, macros)
 ├── scripts/                → Python scripts (data generation, init)
 ├── streamlit_app/          → Streamlit dashboard
-├── data/                   → Raw data and seeds
+├── generated_data/         → Raw data and seeds
 └── docs/                   → Documentation
 ```
 
@@ -91,6 +90,7 @@ finreconciler/
 - **[CLAUDE.md](./.claude/CLAUDE.md)** — Project manual and guidelines
 - **[TASKS.md](./.claude/TASKS.md)** — Task backlog and templates
 - **[skills.md](./.claude/skills.md)** — Claude Code capabilities
+- **[data_generation.md](./docs/data_generation.md)** — Data generation process and schemas
 
 ---
 
