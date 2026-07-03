@@ -47,7 +47,7 @@
 | [4] | Redesign GL structure | High | ✅ | No | 2026-05-30 | Done, needed to update the structure of the schema.yml file (include '"' in the descriptions) and tell Claude to not create the _sources.yml file |
 | [5] | Fix date generation bug | High | ✅ | No | 2026-05-30 | Done |
 | [6] | Update project README | Low | ✅ | No | 2026-05-30 | Done, minimal changes made (standard dbt badge description) |
-| [7] | Update project README | Low | 🆕 | No |  |  |
+| [7] | Update project README (03/07/2026) | Low | 🆕 | No |  |  |
 </details>
 
 <details> 
@@ -66,7 +66,7 @@
 
 <details>
 <summary>Ongoing Tasks</summary>
-## Task 6: Update project README (03/07/2026)
+## Task 7: Update project README (03/07/2026)
 
 **Priority:** Low  
 **Category:** Docs  
