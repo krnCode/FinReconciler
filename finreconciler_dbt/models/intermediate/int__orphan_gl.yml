@@ -1,0 +1,51 @@
+version: 2
+
+models: 
+  - name: int__orphan_gl
+    description: >
+      This model finds general ledger records that are not in the accounts receivable.
+      All the records represent a mismatch between the two systems.
+    columns:
+      - name: gl_id
+        description: The general ledger ID.
+        tests:
+          - unique
+          - not_null
+      - name: journal_id
+        description: The journal ID.
+        tests:
+          - not_null
+      - name: document_ref
+        description: The document reference.
+      - name: account_code
+        description: The account code.
+        tests:
+          - not_null
+      - name: department
+        description: The department.
+        tests:
+          - not_null
+      - name: amount
+        description: The amount.
+        tests:
+          - not_null
+      - name: entry_type
+        description: The entry type.
+        tests:
+          - not_null
+      - name: entry_description
+        description: The entry description.
+        tests:
+          - not_null
+      - name: source_system
+        description: The source system.
+        tests:
+          - not_null
+      - name: posting_date
+        description: The posting date.
+        tests:
+          - not_null
+      - name: status
+        description: The status.
+        tests:
+          - not_null
