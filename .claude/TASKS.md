@@ -47,7 +47,7 @@
 | [4] | Redesign GL structure | High | ✅ | No | 2026-05-30 | Done, needed to update the structure of the schema.yml file (include '"' in the descriptions) and tell Claude to not create the _sources.yml file |
 | [5] | Fix date generation bug | High | ✅ | No | 2026-05-30 | Done |
 | [6] | Update project README | Low | ✅ | No | 2026-05-30 | Done, minimal changes made (standard dbt badge description) |
-| [7] | Update project README (03/07/2026) | Low | 🆕 | No |  |  |
+| [7] | Update project README (03/07/2026) | Low | ✅ | No | 2026-07-03 | Done, no changes made |
 </details>
 
 <details> 
@@ -58,7 +58,7 @@
 - [X] Fix date generation bug (same date being generated for every record)
 - [X] Create duckdb structure
 - [X] Update project README
-- [ ] Update project README (03/07/2026)
+- [X] Update project README (03/07/2026)
 - [ ] Start analysis
 </details>
 
@@ -66,35 +66,39 @@
 
 <details>
 <summary>Ongoing Tasks</summary>
-## Task 7: Update project README (03/07/2026)
 
-**Priority:** Low  
-**Category:** Docs  
-**Status:** 🆕 New 
-
-### Description
-Update project README.md to reflect current status of project.
-
-### Requirements
-- [ ] Review the project status
-- [ ] Compare it to the current README.md
-- [ ] Update the README.md to reflect the current status of the project
-
-### Context
-The update should compare what is in the README.md at this moment and update it with the current status of the project.
-
-### Acceptance Criteria
-- [ ] README.md updated and reflects current status of project
-- [ ] Information updated correctly reflects current status of project
-
-### Notes
-Don't add anything that did not change.
-Keep the strucutre of the README.md the same.
 
 </details>
 
 <details>
 <summary>Completed Tasks</summary>
+## Task 7: Update project README (03/07/2026)
+
+**Priority:** Low  
+**Category:** Docs  
+**Status:** ✅ Completed 
+
+### Description
+Update project README.md to reflect current status of project.
+
+### Requirements
+- [X] Review the project status
+- [X] Compare it to the current README.md
+- [X] Update the README.md to reflect the current status of the project
+
+### Context
+The update should compare what is in the README.md at this moment and update it with the current status of the project.
+
+### Acceptance Criteria
+- [X] README.md updated and reflects current status of project
+- [X] Information updated correctly reflects current status of project
+
+### Notes
+Don't add anything that did not change.
+Keep the strucutre of the README.md the same.
+
+---
+
 
 ## Task 6: Update project README
 
