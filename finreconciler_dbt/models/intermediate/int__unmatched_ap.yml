@@ -11,6 +11,8 @@ models:
         tests:
           - unique
           - not_null
+      - name: gl_id
+        description: The general ledger ID.
       - name: ap_vendor_id
         description: The vendor ID.
         tests:

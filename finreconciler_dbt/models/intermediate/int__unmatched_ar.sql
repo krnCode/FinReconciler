@@ -56,6 +56,7 @@ joined as (
 unmatched as (
     select
         ar_id,
+        gl_id,
         ar_vendor_id,
         invoice_num,
         ar_amount,
