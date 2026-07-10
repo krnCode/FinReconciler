@@ -1,0 +1,72 @@
+version: 2
+
+models:
+  - name: int__matched_gl
+    description: >
+      This model matches General Ledger documents to the corresponding
+      accounts payable and accounts receivable documents.
+
+    columns:
+      - name: gl_id
+        description: >
+          The unique identifier for the General Ledger document.
+        tests:
+          - unique
+          - not_null
+      - name: journal_id
+        description: >
+          The unique identifier for the journal associated with the
+          General Ledger document.
+        tests:
+          - not_null
+      - name: document_ref
+        description: >
+          The unique identifier for the document associated with the
+          General Ledger document.
+        tests:
+          - not_null
+      - name: account_code
+        description: >
+          The account code associated with the General Ledger document.
+        tests:
+          - not_null
+      - name: account_name
+        description: >
+          The account name associated with the General Ledger document.
+        tests:
+          - not_null
+      - name: department
+        description: >
+          The department associated with the General Ledger document.
+        tests:
+          - not_null
+      - name: amount
+        description: >
+          The amount associated with the General Ledger document.
+        tests:
+          - not_null
+      - name: entry_type
+        description: >
+          The entry type associated with the General Ledger document.
+        tests:
+          - not_null
+      - name: entry_description
+        description: >
+          The entry description associated with the General Ledger document.
+        tests:
+          - not_null
+      - name: source_system
+        description: >
+          The source system associated with the General Ledger document.
+        tests:
+          - not_null
+      - name: posting_date
+        description: >
+          The posting date associated with the General Ledger document.
+        tests:
+          - not_null
+      - name: status
+        description: >
+          The status associated with the General Ledger document.
+        tests:
+          - not_null
