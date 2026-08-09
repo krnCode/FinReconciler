@@ -8,5 +8,5 @@ dependencies = [
     "altair>=6.2.2",
     "duckdb>=1.5.3",
     "polars>=1.43.2",
-    "streamlit>=1.57.0",
+    "streamlit>=1.61.1",
 ]
